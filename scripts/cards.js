@@ -1,26 +1,32 @@
 const initialCards = [
     {
-      name: "Архыз",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+      name: "Гоор",
+      link: "../images/goor.jpg",
+      alt: "a man sitting on top of a lush green hillside"
     },
     {
-      name: "Челябинская область",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+      name: "Гамсутль",
+      link: "../images/gamsutl.jpg",
+      alt: "Gamsutl Village, now abandoned"
     },
     {
-      name: "Иваново",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+      name: "Сарыкум",
+      link: "../images/sarikum.jpg",
+      alt: "dune Sarikum"
     },
     {
-      name: "Камчатка",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+      name: "Сулакский каньон",
+      link: "../images/sulakcanyon.jpg",
+      alt: "Sulak canyon is one of the deepest canyons in the world and the deepest in Europe, its depth reaches up to 1920 meters and a length of 53 kilometers."
     },
     {
-      name: "Холмогорский район",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+      name: "Гуниб",
+      link: "../images/mountain.jpg",
+      alt: "village Gunib"
     },
     {
-      name: "Байкал",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+      name: "Кайтаг",
+      link: "../images/kaitag.jpg",
+      alt: "kaitag mountains"
     }
 ];
