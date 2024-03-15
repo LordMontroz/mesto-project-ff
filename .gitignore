@@ -1,0 +1,3 @@
+# Перед тем, как отправить проект на ревью, не забудьте добавить node_modules в файл .gitignore. 
+node_modules
+dist

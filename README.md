@@ -1,4 +1,5 @@
 # Проектная работа Mesto
+## «Mesto. Сборка, модульность, модальные окна»
 
 ![index.html preview](./preview.png)
 
