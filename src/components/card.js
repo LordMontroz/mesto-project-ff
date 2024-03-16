@@ -2,8 +2,6 @@
 // функция создания карточки, функции-обработчики событий удаления
 // и лайка карточки;
 
-
-
 /**
  * принимает в аргументах данные одной карточки
  * и функцию-колбэк для удаления,
@@ -11,13 +9,14 @@
  *
  * @param {object} likeCard функция лайка карточки
  * @param {object} deleteCard Функция удаления карточки
+ * @param {object} openImage Функция просмотра карточки
  * @returns {cardElementCopy} возвращаем карточку
  */
 
 // @todo 3: Функция создания карточки
-function createCard(item, deleteCard, popupImage, likeCard) {
+function createCard(item, deleteCard, openImage, likeCard) {
   // @todo 1: Темплейт карточки
-  const template = document.querySelector("#card-template").content;
+  const template = document.querySelector('#card-template').content.querySelector('.card');
   const cardElementCopy = template.cloneNode(true);
 
   const likeButton = cardElementCopy.querySelector(".card__like-button");
@@ -31,7 +30,7 @@ function createCard(item, deleteCard, popupImage, likeCard) {
   const deleteBtn = cardElementCopy.querySelector(".card__delete-button");
   deleteBtn.addEventListener("click", deleteCard);
 
-  cardImage.addEventListener("click", popupImage);
+  cardImage.addEventListener("click", openImage);
   likeButton.addEventListener("click", likeCard);
 
   return cardElementCopy;
