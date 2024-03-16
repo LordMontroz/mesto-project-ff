@@ -25,7 +25,6 @@ function closeEsc(evt) {
 
 // функция-обработчик события клика по оверлею
 function closeByClick(evt) {
-  //для остановки вспплытия нужно вызвать метод event.stopPropagation()
   evt.stopPropagation();
   if (evt.target.classList.contains("popup")) {
     closePopup(evt.target);
@@ -36,4 +35,5 @@ function closePopupButton(evt) {
   const popup = evt.target.closest(".popup");
   closePopup(popup);
 }
+
 export { openPopup, closePopup, closeByClick, closePopupButton };

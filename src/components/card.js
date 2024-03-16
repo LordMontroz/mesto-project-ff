@@ -13,12 +13,12 @@
  * @returns {cardElementCopy} возвращаем карточку
  */
 
-// @todo 3: Функция создания карточки
-function createCard(item, deleteCard, openImage, likeCard) {
-  // @todo 1: Темплейт карточки
-  const template = document.querySelector('#card-template').content.querySelector('.card');
+// функция создания карточки
+function createCard(item, { deleteCard, openImage, likeCard }) {
+  const template = document
+    .querySelector("#card-template")
+    .content.querySelector(".card");
   const cardElementCopy = template.cloneNode(true);
-
   const likeButton = cardElementCopy.querySelector(".card__like-button");
 
   const cardTitle = cardElementCopy.querySelector(".card__title");
@@ -33,7 +33,7 @@ function createCard(item, deleteCard, openImage, likeCard) {
   cardImage.addEventListener("click", openImage);
   likeButton.addEventListener("click", likeCard);
 
-  return cardElementCopy;
+  return cardElementCopy; //возвращаем карточку
 }
 
 // Функция удаления карточки
@@ -42,10 +42,7 @@ function deleteCard(card) {
   cardToRemove.remove(); // удаляем карточку
 }
 
-// Задача №7: Лайк карточки
-// Сделайте так, чтобы карточки можно было лайкать:
-// Если лайкнуть карточку, сердечко поменяет цвет
-
+// функция лайка карточки
 function likeCard(evt) {
   evt.target.classList.toggle("card__like-button_is-active");
 }

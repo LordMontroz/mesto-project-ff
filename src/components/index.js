@@ -23,18 +23,11 @@ const popupPlace = document.querySelector(".popup_type_new-card"); // попап
 const popupNewPlace = document.querySelector(".popup_type_new-card"); // попап добавления карточки
 const popupCloseButtons = document.querySelectorAll(".popup__close"); // все кнопки закрытия в document
 const allPopups = document.querySelectorAll(".popup"); // все попапы
-const formInput = document.querySelector(".popup__form");
+
+const formInputProfile = document.querySelector(".popup__form");
+const formInputPicture = document.querySelector(".popup__form");
 
 const popupImageCard = document.querySelector(".popup_type_image");
-
-const formElementPicture = document.querySelector(".popup_type_new-card");
-const placeNameInput = formElementPicture.querySelector(
-  ".popup__input_type_card-name"
-);
-const linkInput = formElementPicture.querySelector(".popup__input_type_url");
-
-const popupCard = popupImageCard.querySelector(".popup__image");
-const popupCaption = popupImageCard.querySelector(".popup__caption");
 
 // форма редактирования профиля
 const formEditProfile = document.querySelector(".popup_type_edit");
@@ -45,12 +38,21 @@ const jobInput = formEditProfile.querySelector(
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 
+// форма добавления карточки
+const formElementPicture = document.querySelector(".popup_type_new-card");
+const placeNameInput = formElementPicture.querySelector(
+  ".popup__input_type_card-name"
+);
+const linkInput = formElementPicture.querySelector(".popup__input_type_url");
+
+const popupCard = popupImageCard.querySelector(".popup__image");
+const popupCaption = popupImageCard.querySelector(".popup__caption");
+
 function handleEditProfile(evt) {
   evt.preventDefault();
   // получаем значения полей
   const nameInputValue = nameInput.value;
   const jobInputValue = jobInput.value;
-
   // вставляем новые значения
   profileTitle.textContent = nameInputValue;
   profileDescription.textContent = jobInputValue;
@@ -59,7 +61,6 @@ function handleEditProfile(evt) {
 
 function handlePlaceFormSubmit(evt) {
   evt.preventDefault();
-
   const card = {
     name: placeNameInput.value,
     link: linkInput.value,
@@ -100,13 +101,13 @@ popupCloseButtons.forEach((button) => {
 
 // закрытие по оверлею
 allPopups.forEach((popup) => {
+  popup.classList.add("popup_is-animated");
   popup.addEventListener("click", closeByClick);
 });
 
 formEditProfile.addEventListener("submit", function (evt) {
   handleEditProfile(evt);
-  closePopup(popupEdit);
-  formInput.reset();
+  formInputProfile.reset();
 });
 
 // кнопка редактирования профиля
@@ -118,7 +119,7 @@ profileEditButton.addEventListener("click", function () {
 
 formElementPicture.addEventListener("submit", function (evt) {
   handlePlaceFormSubmit(evt);
-  formInput.reset();
+  formInputPicture.reset();
 });
 
 // Вывести карточки на страницу
