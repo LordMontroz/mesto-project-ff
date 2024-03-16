@@ -13,6 +13,13 @@ import {
   closeByClick,
   closePopupButton,
 } from "./modal.js";
+import {
+  hideInputError,
+  toggleButtonState,
+  setEventListeners,
+  enableValidation,
+  clearValidation,
+} from "./validation.js";
 
 const container = document.querySelector(".places__list"); // контейнер карточек
 
@@ -91,6 +98,7 @@ function addCard(card) {
 
 // кнопка добавления карточки
 profileAddButton.addEventListener("click", function () {
+  clearValidation(formElementPicture, classes); // отчистили валидацию формы
   openPopup(popupNewPlace);
 });
 
@@ -114,6 +122,7 @@ formEditProfile.addEventListener("submit", function (evt) {
 profileEditButton.addEventListener("click", function () {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileDescription.textContent;
+  clearValidation(formEditProfile, classes); // отчистили валидацию формы редактирования профиля
   openPopup(popupEdit);
 });
 
@@ -121,6 +130,18 @@ formElementPicture.addEventListener("submit", function (evt) {
   handlePlaceFormSubmit(evt);
   formInputPicture.reset();
 });
+
+// объекты валидации
+const classes = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}
+
+enableValidation(classes);
 
 // Вывести карточки на страницу
 initialCards.forEach(addCard);
