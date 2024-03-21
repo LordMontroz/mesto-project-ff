@@ -1,7 +1,6 @@
 {
   "name": "mesto-project-ff",
   "version": "1.0.0",
-  "description": "![index.html preview](./preview.png)",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
