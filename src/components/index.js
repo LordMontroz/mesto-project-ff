@@ -29,6 +29,7 @@ import {
   editProfile,
   addNewCard,
   updateAvatar,
+  loadAll,
 } from "./api.js";
 
 // объекты валидации
@@ -93,9 +94,17 @@ function handleAvatarFormSubmit(evt) {
   evt.preventDefault();
   const newUrl = urlInput.value;
   avatarImage.style = `background-image: url(${newUrl})`;
-  updateAvatar(newUrl);
   newAvatarSubmitButton.textContent = "Сохранение...";
-  closePopup(popupProfileAvatar);
+  updateAvatar(newUrl)
+    .then(() => {
+      closePopup(popupProfileAvatar);
+    })
+    .catch((err) => {
+      console.log(err.status);
+    })
+    .finally(() => {
+      newAvatarSubmitButton.textContent = "Сохранить";
+    });
 }
 
 avatarImage.addEventListener("click", function () {
@@ -122,8 +131,16 @@ function handleEditProfile(evt) {
     name: nameInput.value,
     about: jobInput.value,
   };
-  editProfile(profile); // отправляем данные на сервер
-  closePopup(popupEdit);
+  editProfile(profile) // отправляем данные на сервер
+    .then(() => {
+      closePopup(popupEdit);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      editSubmitButton.textContent = "Сохранить";
+    });
 }
 
 function handlePlaceFormSubmit(evt) {
@@ -136,9 +153,13 @@ function handlePlaceFormSubmit(evt) {
   addNewCard(card) // отправляем данные на сервер
     .then((data) => {
       addCard(data, data.owner._id);
+      closePopup(popupPlace);
     })
     .catch((err) => {
       console.log(`Ошибка: ${err.status}`);
+    })
+    .finally(() => {
+      newCardSubmitButton.textContent = "Сохранить";
     });
   closePopup(popupPlace);
 }
@@ -184,6 +205,25 @@ formEditProfile.addEventListener("submit", function (evt) {
   handleEditProfile(evt);
   formInputProfile.reset();
 });
+
+// подгружаем все
+const setProfileData = (data) => {
+  profileTitle.textContent = data.name;
+  profileDescription.textContent = data.about;
+  profileImage.style = `background-image: url('${data.avatar}')`;
+};
+
+loadAll()
+  .then(([cards, user]) => {
+    cards.forEach((card) => {
+      // console.log(card.likes.length);
+      addCard(card, user._id); // отрисовали картинки
+    });
+    setProfileData(user);
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`);
+  });
 
 // кнопка редактирования профиля
 profileEditButton.addEventListener("click", function () {

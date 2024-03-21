@@ -28,22 +28,9 @@ const getUserInfo = () => {
   }).then(checkResponse);
 };
 
-const setProfileData = (data) => {
-  profileTitle.textContent = data.name;
-  profileDescription.textContent = data.about;
-  profileImage.style = `background-image: url('${data.avatar}')`;
+const loadAll = () => {
+  return Promise.all([getInitialCards(), getUserInfo()]);
 };
-
-Promise.all([getInitialCards(), getUserInfo()])
-  .then(([cards, user]) => {
-    cards.forEach((card) => {
-      addCard(card, user._id); // отрисовали картинки
-    });
-    setProfileData(user);
-  })
-  .catch((err) => {
-    console.log(`Ошибка: ${err}`);
-  });
 
 // запрос PATCH: Редактирование профиля
 const editProfile = (profile) => {
@@ -70,7 +57,7 @@ const addNewCard = (card) => {
 };
 
 // запрос DELETE: удаление карточки
-const removeCard = (card, id) => {
+const removeCard = (id) => {
   return fetch(`${config.baseUrl}/cards/${id}`, {
     method: "DELETE",
     headers: config.headers,
@@ -111,4 +98,5 @@ export {
   editProfile,
   addNewCard,
   updateAvatar,
+  loadAll,
 };
