@@ -16,7 +16,7 @@
 
 ## Пример работы программы:
 
-![giphy](./src/images/giphy.mp4)
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW0zaGx0bzNmNGFwaGI5azV3MDZ6NjExY2JubjM3bHVvbmk5MHR1bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/sm03Lk0JlDfw7SqfAL/giphy.gif" width="100%" height="100%" />
 
 ## Технологии, примененные при разработке:
 
