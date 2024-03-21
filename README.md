@@ -16,7 +16,7 @@
 
 ## Пример работы программы:
 
-![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbGt1MmgyeTJmMDMxMnF2bW5pZG01Nmo4ZmQxZmZycGVodXhzNnUyYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/t9XOrHqM78jM1nfnKm/giphy.gif)
+![](./src/images/giphy.mp4)
 
 ## Технологии, примененные при разработке:
 
