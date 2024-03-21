@@ -14,4 +14,4 @@
 - Поставление / снятие лайка
 - Открытие фотографии в полном размере
 
-[гиф работы программы](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHBsOWRmMTIyMnkzaGNlNnZ5ZGtwZjc0amEzODdlaTQzaHpkY2JkdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DIZSZzdlctDyxKCAk7/giphy.gif)
+<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/DIZSZzdlctDyxKCAk7" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/DIZSZzdlctDyxKCAk7">Гифка</a></p>
