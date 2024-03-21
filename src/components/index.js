@@ -93,11 +93,12 @@ const newAvatarSubmitButton = popupProfileAvatar.querySelector(
 function handleAvatarFormSubmit(evt) {
   evt.preventDefault();
   const newUrl = urlInput.value;
-  avatarImage.style = `background-image: url(${newUrl})`;
   newAvatarSubmitButton.textContent = "Сохранение...";
   updateAvatar(newUrl)
     .then(() => {
+      avatarImage.style = `background-image: url(${newUrl})`;
       closePopup(popupProfileAvatar);
+      urlInput.value = "";
     })
     .catch((err) => {
       console.log(err.status);
@@ -124,16 +125,18 @@ function handleEditProfile(evt) {
   // получаем значения полей
   const nameInputValue = nameInput.value;
   const jobInputValue = jobInput.value;
-  // вставляем новые значения
-  profileTitle.textContent = nameInputValue;
-  profileDescription.textContent = jobInputValue;
   const profile = {
     name: nameInput.value,
     about: jobInput.value,
   };
   editProfile(profile) // отправляем данные на сервер
     .then(() => {
+      // вставляем новые значения
+      profileTitle.textContent = nameInputValue;
+      profileDescription.textContent = jobInputValue;
       closePopup(popupEdit);
+      nameInput.value = "";
+      jobInput.value = "";
     })
     .catch((err) => {
       console.log(err);
@@ -142,6 +145,10 @@ function handleEditProfile(evt) {
       editSubmitButton.textContent = "Сохранить";
     });
 }
+
+formEditProfile.addEventListener("submit", function (evt) {
+  handleEditProfile(evt);
+});
 
 function handlePlaceFormSubmit(evt) {
   evt.preventDefault();
@@ -154,6 +161,8 @@ function handlePlaceFormSubmit(evt) {
     .then((data) => {
       addCard(data, data.owner._id);
       closePopup(popupPlace);
+      placeNameInput.value = "";
+      linkInput.value = "";
     })
     .catch((err) => {
       console.log(`Ошибка: ${err.status}`);
@@ -161,7 +170,6 @@ function handlePlaceFormSubmit(evt) {
     .finally(() => {
       newCardSubmitButton.textContent = "Сохранить";
     });
-  closePopup(popupPlace);
 }
 
 // Настройте просмотр фотографий. Пусть открываются нажатием на картинку:
