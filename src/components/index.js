@@ -5,8 +5,9 @@
 // Также в index.js находится код, который отвечает за отображение шести карточек при открытии страницы.
 
 import "/src/pages/index.css";
-import { initialCards } from "./cards.js";
+
 import { likeCard, deleteCard, createCard } from "./card.js";
+
 import {
   openPopup,
   closePopup,
@@ -44,6 +45,7 @@ const classes = {
 
 // DOM узлы
 const container = document.querySelector(".places__list"); // контейнер карточек
+
 // для кнопок и попапов
 const profileEditButton = document.querySelector(".profile__edit-button"); //кнопка редактирования
 const profileAddButton = document.querySelector(".profile__add-button"); // кнопка добавления карточки
