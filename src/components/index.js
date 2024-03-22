@@ -5,6 +5,7 @@
 // Также в index.js находится код, который отвечает за отображение шести карточек при открытии страницы.
 
 import "/src/pages/index.css";
+import { initialCards } from "./cards.js";
 import { likeCard, deleteCard, createCard } from "./card.js";
 import {
   openPopup,
