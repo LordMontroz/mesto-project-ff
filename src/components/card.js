@@ -80,10 +80,14 @@ function likeCard(evt, id) {
     .querySelector(".card__likes");
 
   if (!likeButton.classList.contains("card__like-button_is-active")) {
-    sendLike(id).then((card) => {
-      likesAmount.textContent = card.likes.length;
-      likeButton.classList.toggle("card__like-button_is-active");
-    });
+    sendLike(id)
+      .then((card) => {
+        likesAmount.textContent = card.likes.length;
+        likeButton.classList.toggle("card__like-button_is-active");
+      })
+      .catch((err) => {
+        console.log(`Ошибка, не выполенено: ${err.status}`);
+      });
   } else {
     deleteLike(id)
       .then((card) => {
