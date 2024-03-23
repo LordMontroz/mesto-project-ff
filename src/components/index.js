@@ -119,7 +119,6 @@ avatarImage.addEventListener("click", function () {
 
 popupProfileAvatar.addEventListener("submit", function (evt) {
   handleAvatarFormSubmit(evt);
-  urlInput.value = "";
 });
 
 function handleEditProfile(evt) {
@@ -129,8 +128,8 @@ function handleEditProfile(evt) {
   const nameInputValue = nameInput.value;
   const jobInputValue = jobInput.value;
   const profile = {
-    name: nameInput.value,
-    about: jobInput.value,
+    name: nameInputValue,
+    about: jobInputValue,
   };
   editProfile(profile) // отправляем данные на сервер
     .then(() => {
@@ -138,12 +137,8 @@ function handleEditProfile(evt) {
       profileTitle.textContent = nameInputValue;
       profileDescription.textContent = jobInputValue;
       closePopup(popupEdit);
-      nameInput.value = "";
-      jobInput.value = "";
     })
-    .catch((err) => {
-      console.log(err);
-    })
+    .catch(console.error)
     .finally(() => {
       editSubmitButton.textContent = "Сохранить";
     });
@@ -212,11 +207,6 @@ allPopups.forEach((popup) => {
   popup.addEventListener("click", closeByClick);
 });
 
-formEditProfile.addEventListener("submit", function (evt) {
-  handleEditProfile(evt);
-  formInputProfile.reset();
-});
-
 // подгружаем все
 const setProfileData = (data) => {
   profileTitle.textContent = data.name;
@@ -246,9 +236,6 @@ profileEditButton.addEventListener("click", function () {
 
 formElementPicture.addEventListener("submit", function (evt) {
   handlePlaceFormSubmit(evt);
-  formInputPicture.reset();
 });
 
 enableValidation(classes);
-
-export { addCard };

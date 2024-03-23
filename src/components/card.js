@@ -2,14 +2,7 @@
 // функция создания карточки, функции-обработчики событий удаления
 // и лайка карточки;
 
-import {
-  sendLike,
-  deleteLike,
-  removeCard,
-  editProfile,
-  addNewCard,
-  updateAvatar,
-} from "./api.js";
+import { sendLike, deleteLike, removeCard } from "./api.js";
 
 /**
  * принимает в аргументах данные одной карточки
@@ -92,10 +85,14 @@ function likeCard(evt, id) {
       likeButton.classList.toggle("card__like-button_is-active");
     });
   } else {
-    deleteLike(id).then((card) => {
-      likesAmount.textContent = card.likes.length;
-      likeButton.classList.toggle("card__like-button_is-active");
-    });
+    deleteLike(id)
+      .then((card) => {
+        likesAmount.textContent = card.likes.length;
+        likeButton.classList.toggle("card__like-button_is-active");
+      })
+      .catch((err) => {
+        console.log(`Ошибка, не выполенено: ${err.status}`);
+      });
   }
 }
 

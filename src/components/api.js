@@ -6,27 +6,28 @@ const config = {
     "Content-Type": "application/json",
   },
 };
-
-// функция проверяет, что все хорошо
-function checkResponse(data) {
-  if (data.ok) {
-    return data.json();
-  }
-  return Promise.reject(`Ошибка: ${data.status}`);
+//Можно сделать универсальную функцию запроса с проверкой ответа, чтобы не дублировать эту проверку в каждом запросе:
+function request(url, method, body) {
+  return fetch(url, {
+    method: method,
+    headers: config.headers,
+    body: JSON.stringify(body),
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  });
 }
 
 // запрос GET: Вывод карточек на страницу
 const getInitialCards = () => {
-  return fetch(`${config.baseUrl}/cards`, {
-    headers: config.headers,
-  }).then(checkResponse);
+  return request(`${config.baseUrl}/cards`, "GET");
 };
 
 // запрос GET: Загрузка информации о пользователе с сервера
 const getUserInfo = () => {
-  return fetch(`${config.baseUrl}/users/me`, {
-    headers: config.headers,
-  }).then(checkResponse);
+  return request(`${config.baseUrl}/users/me`, "GET");
 };
 
 const loadAll = () => {
@@ -35,61 +36,40 @@ const loadAll = () => {
 
 // запрос PATCH: Редактирование профиля
 const editProfile = (profile) => {
-  return fetch(`${config.baseUrl}/users/me`, {
-    method: "PATCH",
-    headers: config.headers,
-    body: JSON.stringify({
-      name: profile.name,
-      about: profile.about,
-    }),
-  }).then(checkResponse);
+  return request(`${config.baseUrl}/users/me`, "PATCH", {
+    name: profile.name,
+    about: profile.about,
+  });
 };
 
 // запрос POST: Добавление новой карточки
 const addNewCard = (card) => {
-  return fetch(`${config.baseUrl}/cards`, {
-    method: "POST",
-    headers: config.headers,
-    body: JSON.stringify({
-      name: card.name,
-      link: card.link,
-    }),
-  }).then(checkResponse);
+  return request(`${config.baseUrl}/cards`, "POST", {
+    name: card.name,
+    link: card.link,
+  });
 };
 
 // запрос DELETE: удаление карточки
 const removeCard = (id) => {
-  return fetch(`${config.baseUrl}/cards/${id}`, {
-    method: "DELETE",
-    headers: config.headers,
-  }).then(checkResponse);
+  return request(`${config.baseUrl}/cards/${id}`, "DELETE");
 };
 
 // запрос PUT: Добавляем лайк
 const sendLike = (id) => {
-  return fetch(`${config.baseUrl}/cards/likes/${id}`, {
-    method: "PUT",
-    headers: config.headers,
-  }).then(checkResponse);
+  return request(`${config.baseUrl}/cards/likes/${id}`, "PUT");
 };
 
 // запрос DELETE: Убираем лайк
 const deleteLike = (id) => {
-  return fetch(`${config.baseUrl}/cards/likes/${id}`, {
-    method: "DELETE",
-    headers: config.headers,
-  }).then(checkResponse);
+  return request(`${config.baseUrl}/cards/likes/${id}`, "DELETE");
 };
 
 // запрос PATCH: Обновление аватара пользователя
 const updateAvatar = (avatarUrl) => {
-  return fetch(`${config.baseUrl}/users/me/avatar`, {
-    method: "PATCH",
-    headers: config.headers,
-    body: JSON.stringify({
-      avatar: avatarUrl,
-    }),
-  }).then(checkResponse);
+  return request(`${config.baseUrl}/users/me/avatar`, "PATCH", {
+    avatar: avatarUrl,
+  });
 };
 
 export {
@@ -100,4 +80,6 @@ export {
   addNewCard,
   updateAvatar,
   loadAll,
+  getUserInfo,
+  getInitialCards,
 };
